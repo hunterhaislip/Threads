@@ -14,7 +14,7 @@ namespace Threads
 
         FindPiThread(int n)
         {
-
+            n = Throws.Next(n);
             darts = 0;
             count = 0;
         }
