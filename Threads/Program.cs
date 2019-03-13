@@ -10,13 +10,27 @@ namespace Threads
     {
         public int darts;
         public int count;
-        Random Throws = new Random();
+        public Random Throws;
 
-        FindPiThread(int n)
+        public FindPiThread(int t)
         {
-            n = Throws.Next(n);
-            darts = 0;
+            Throws = new Random();
+            darts = t;
             count = 0;
+        }
+
+        public void throwDarts()
+        {
+            double x, y;
+            for (int i = 0; i < darts; i++)
+            {
+                x = Throws.NextDouble();
+                y = Throws.NextDouble();
+                if(x*x + y*y <= 1)
+                {
+                    count++;
+                }
+            }
         }
     }
         
@@ -26,6 +40,12 @@ namespace Threads
     {
         static void Main(string[] args)
         {
+            int Ask1;
+            int Ask2;
+            Console.WriteLine("How many darts would you like a thread to throw?");
+            Ask1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("How many threads would you like to have?");
+            Ask2 = Convert.ToInt32(Console.ReadLine());
 
         }
     }
