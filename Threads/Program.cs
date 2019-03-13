@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Threads
@@ -26,6 +27,7 @@ namespace Threads
             {
                 x = Throws.NextDouble();
                 y = Throws.NextDouble();
+
                 if(x*x + y*y <= 1)
                 {
                     count++;
@@ -46,6 +48,19 @@ namespace Threads
             Ask1 = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("How many threads would you like to have?");
             Ask2 = Convert.ToInt32(Console.ReadLine());
+
+            List<Thread>List1 = new List<Thread>(Ask2);
+            List<FindPiThread> List2 = new List<FindPiThread>(Ask2);
+
+            for(int i = 0; i < Ask2; i++)
+            {
+                FindPiThread Add1 = new FindPiThread(Ask1);
+                List2.Add(Add1);
+                Thread Thread1 = new Thread(new ThreadStart(Add1.throwDarts));
+                List1.Add(Thread1);
+                List1.Start(); ///////GUYHEFDHYGVHHJFDEBGVHJDEFBGJHBHJFDHJGHJDSFHJBGJHBFDHJB
+                Thread.Sleep(16);
+            }
 
         }
     }
